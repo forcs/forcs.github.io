@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="spring, bean, 生命周期," />
 
 
 
@@ -80,6 +80,7 @@
 
 
 <meta name="description" content="前言如果把Spring比作一个生命体，那么bean就是各个功能的器官，协同维持着生命体的运作。Spring本质就是一个bean工厂，负责生产和组装各种bean，利用IoC技术建立bean之间的依赖关系。bean可以视为Spring的一种组件单元，从创建到消亡的过程都委托给Spring负责管理，而这个从创建到消亡的过程，中间又细分了多个阶段，这些阶段，就是bean的生命周期。 组件生命周期的特征从代">
+<meta name="keywords" content="spring, bean, 生命周期">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我所理解的Bean生命周期">
 <meta property="og:url" content="http://zhangguoyu.org/2017/11/06/我所理解的Bean生命周期/index.html">
@@ -87,8 +88,9 @@
 <meta property="og:description" content="前言如果把Spring比作一个生命体，那么bean就是各个功能的器官，协同维持着生命体的运作。Spring本质就是一个bean工厂，负责生产和组装各种bean，利用IoC技术建立bean之间的依赖关系。bean可以视为Spring的一种组件单元，从创建到消亡的过程都委托给Spring负责管理，而这个从创建到消亡的过程，中间又细分了多个阶段，这些阶段，就是bean的生命周期。 组件生命周期的特征从代">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/64911e7dly1fl7nbsod52j20e90ifmz4.jpg">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/64911e7dly1fl78mrngopj20ij0a6t9t.jpg">
 <meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-6/38868734.jpg">
-<meta property="og:updated_time" content="2017-11-06T15:54:43.219Z">
+<meta property="og:updated_time" content="2017-11-06T15:57:09.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我所理解的Bean生命周期">
 <meta name="twitter:description" content="前言如果把Spring比作一个生命体，那么bean就是各个功能的器官，协同维持着生命体的运作。Spring本质就是一个bean工厂，负责生产和组装各种bean，利用IoC技术建立bean之间的依赖关系。bean可以视为Spring的一种组件单元，从创建到消亡的过程都委托给Spring负责管理，而这个从创建到消亡的过程，中间又细分了多个阶段，这些阶段，就是bean的生命周期。 组件生命周期的特征从代">
@@ -312,7 +314,13 @@
 </ul>
 <p>以Android的Activity为例，它的生命周期如下图：</p>
 <p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl7nbsod52j20e90ifmz4.jpg" alt=""></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## 关于Bean的生命周期</div><div class="line"></div><div class="line">关于Spring Bean的生命周期，网上的资料通常会提供下面这个流程图：</div><div class="line"></div><div class="line">![](https://ws1.sinaimg.cn/large/64911e7dly1fl78mrngopj20ij0a6t9t.jpg)</div><div class="line"></div><div class="line">从这个流程图看到，Spring为Bean提供了非常细致的生命周期，光是ready之前，就有9个阶段，这些阶段总结起来就是：</div><div class="line"></div><div class="line">1. 根据注册的```BeanDefinition```，调用Bean的构造方法，或者工厂方法实例化bean。</div><div class="line">2. 设置bean的属性和依赖，即各种setter。</div><div class="line">3. 如果bean实现了```BeanNameAware```接口，则调用bean的```setBeanName()```。</div><div class="line">4. 如果bean实现了```BeanFactoryAware```接口，则调用bean的```setBeanFactory()```。</div><div class="line">5. 如果bean实现了```ApplicationContextAware```接口，则调用bean的```setApplicationContext()```。</div><div class="line">6. 调用容器的BeanPostProcessor的```postProcessBeforeInitialization()```处理bean。</div><div class="line">7. 如果bean实现了```InitializingBean```接口，则调用bean的```afterPropertiesSet()```。</div><div class="line">8. 如果bean在配置了init-method，则调用init-method指向的bean方法。</div><div class="line">9. ready。</div><div class="line">10. 当容器关闭时，如果bean实现了```DisposableBean```接口，则调用bean的```destroy()```。</div><div class="line">11. 最后，如果bean配置了destroy-method，则调用destroy-method指向的方法。</div><div class="line"></div><div class="line">在我看来，这张图对于bean生命周期的描述是有些误导性的，为什么这么认为呢？结合前面描述的生命周期的特征第二条，生命周期各个阶段应该相互对应，但在上图展示的阶段中，只有四个阶段是满足这样的关系。</div><div class="line"></div><div class="line">![](https://ws1.sinaimg.cn/large/64911e7dly1fl7mtvkedpj20en0403yq.jpg)</div><div class="line"></div><div class="line">如上图所示。其他阶段又应该如何理解？</div><div class="line"></div><div class="line">## Bean生命周期的分析</div><div class="line"></div><div class="line">### 创建过程</div><div class="line"></div><div class="line">Spring把bean的生命周期划分的很细致，但其实主要是在构建的阶段很细致。构建的时候，Spring的BeanFactory把Bean的构建大致划分为四个阶段：</div><div class="line"></div><div class="line">![](https://ws1.sinaimg.cn/large/64911e7dly1fl79vj0kkxj20mb02ajrj.jpg)</div><div class="line"></div><div class="line">先通过```BeanDefinition```调用工厂方法实例化bean对象，设置属性和依赖。接着是判断是否实现了一系列```Aware```接口，比如```BeanNameAware```、```BeanFactoryAware```、```ResourceLoaderAware```、```ApplicationContextAware```等等，然后调用这些```Aware```接口的set方法。再接着，交给容器的BeanPostProcessors处理，在BeanPostProcessors处理过程中，bean工厂会尝试调用组件自身的初始化方法，也就是```InitializingBean```的```afterPropertiesSet()```方法和```init-method```属性指定的方法，最终完成bean的构建。</div><div class="line"></div><div class="line">所以，Bean的生命周期，本质上应该是：</div><div class="line"></div><div class="line">我并不认同将设置一系列Aware接口和BeanPostProcessors处理这两个阶段视为bean生命周期的阶段，原因是这两个阶段有违之前所述的生命周期的特征。</div><div class="line"></div><div class="line">```Aware```接口本质上就是一个无副作用的set方法，好比bean的属性。只不过在构建bean的时候，bean工厂会自动识别部分```Aware```接口，然后调用相应的set方法。这些set方法都是__无状态的__，所以不能认为是生命周期的阶段。</div><div class="line"></div><div class="line">BeanPostProcessors本质上是```BeanPostProcesser```的实现，实现了```BeanPostProcessor```接口的```postProcessBeforeInitialization```和```postProcessAfterInitialization```两个方法。这两个方法都相同的接收两个参数，```bean```和```beanName```，并返回处理后的```bean```。那么问题来了，如果一个bean组件的类实现了```BeanPostProcessor```接口，是否可以像下面的代码这样，```BeanPostProcessor```接口的方法中处理bean自身呢？</div><div class="line"></div><div class="line">```java</div><div class="line">public class BeanPostProcessorImpl implements BeanPostProcessor &#123;</div><div class="line">  public Object postProcessBeforeInitialization(Object bean, String beanName) &#123;</div><div class="line">  	if (bean == this) &#123;</div><div class="line">    	// do something...</div><div class="line">  	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>onCreate()对应着onDestory()，onStart()对应onStop()，onResume()对应onPause()等等。</p>
+<h2 id="关于Bean的生命周期"><a href="#关于Bean的生命周期" class="headerlink" title="关于Bean的生命周期"></a>关于Bean的生命周期</h2><p>关于Spring Bean的生命周期，网上的资料通常会提供下面这个流程图：</p>
+<p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl78mrngopj20ij0a6t9t.jpg" alt=""></p>
+<p>从这个流程图看到，Spring为Bean提供了非常细致的生命周期，光是ready之前，就有9个阶段，这些阶段总结起来就是：</p>
+<ol>
+<li>根据注册的<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">2. 设置bean的属性和依赖，即各种setter。</div><div class="line">3. 如果bean实现了```BeanNameAware```接口，则调用bean的```setBeanName()```。</div><div class="line">4. 如果bean实现了```BeanFactoryAware```接口，则调用bean的```setBeanFactory()```。</div><div class="line">5. 如果bean实现了```ApplicationContextAware```接口，则调用bean的```setApplicationContext()```。</div><div class="line">6. 调用容器的BeanPostProcessor的```postProcessBeforeInitialization()```处理bean。</div><div class="line">7. 如果bean实现了```InitializingBean```接口，则调用bean的```afterPropertiesSet()```。</div><div class="line">8. 如果bean在配置了init-method，则调用init-method指向的bean方法。</div><div class="line">9. ready。</div><div class="line">10. 当容器关闭时，如果bean实现了```DisposableBean```接口，则调用bean的```destroy()```。</div><div class="line">11. 最后，如果bean配置了destroy-method，则调用destroy-method指向的方法。</div><div class="line"></div><div class="line">在我看来，这张图对于bean生命周期的描述是有些误导性的，为什么这么认为呢？结合前面描述的生命周期的特征第二条，生命周期各个阶段应该相互对应，但在上图展示的阶段中，只有四个阶段是满足这样的关系。</div><div class="line"></div><div class="line">![](https://ws1.sinaimg.cn/large/64911e7dly1fl7mtvkedpj20en0403yq.jpg)</div><div class="line"></div><div class="line">如上图所示。其他阶段又应该如何理解？</div><div class="line"></div><div class="line">## Bean生命周期的分析</div><div class="line"></div><div class="line">### 创建过程</div><div class="line"></div><div class="line">Spring把bean的生命周期划分的很细致，但其实主要是在构建的阶段很细致。构建的时候，Spring的BeanFactory把Bean的构建大致划分为四个阶段：</div><div class="line"></div><div class="line">![](https://ws1.sinaimg.cn/large/64911e7dly1fl79vj0kkxj20mb02ajrj.jpg)</div><div class="line"></div><div class="line">先通过```BeanDefinition```调用工厂方法实例化bean对象，设置属性和依赖。接着是判断是否实现了一系列```Aware```接口，比如```BeanNameAware```、```BeanFactoryAware```、```ResourceLoaderAware```、```ApplicationContextAware```等等，然后调用这些```Aware```接口的set方法。再接着，交给容器的BeanPostProcessors处理，在BeanPostProcessors处理过程中，bean工厂会尝试调用组件自身的初始化方法，也就是```InitializingBean```的```afterPropertiesSet()```方法和```init-method```属性指定的方法，最终完成bean的构建。</div><div class="line"></div><div class="line">所以，Bean的生命周期，本质上应该是：</div><div class="line"></div><div class="line">我并不认同将设置一系列Aware接口和BeanPostProcessors处理这两个阶段视为bean生命周期的阶段，原因是这两个阶段有违之前所述的生命周期的特征。</div><div class="line"></div><div class="line">```Aware```接口本质上就是一个无副作用的set方法，好比bean的属性。只不过在构建bean的时候，bean工厂会自动识别部分```Aware```接口，然后调用相应的set方法。这些set方法都是__无状态的__，所以不能认为是生命周期的阶段。</div><div class="line"></div><div class="line">BeanPostProcessors本质上是```BeanPostProcesser```的实现，实现了```BeanPostProcessor```接口的```postProcessBeforeInitialization```和```postProcessAfterInitialization```两个方法。这两个方法都相同的接收两个参数，```bean```和```beanName```，并返回处理后的```bean```。那么问题来了，如果一个bean组件的类实现了```BeanPostProcessor```接口，是否可以像下面的代码这样，```BeanPostProcessor```接口的方法中处理bean自身呢？</div><div class="line"></div><div class="line">```java</div><div class="line">public class BeanPostProcessorImpl implements BeanPostProcessor &#123;</div><div class="line">  public Object postProcessBeforeInitialization(Object bean, String beanName) &#123;</div><div class="line">  	if (bean == this) &#123;</div><div class="line">    	// do something...</div><div class="line">  	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></li>
+</ol>
 <p>继续看下面的分析。</p>
 <h3 id="bean的种类"><a href="#bean的种类" class="headerlink" title="bean的种类"></a>bean的种类</h3><p>Spring有几种bean？网上的资料大多数会提到下面两种：</p>
 <ul>
@@ -351,6 +359,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-bean-生命周期/" rel="tag"># spring, bean, 生命周期</a>
+          
+        </div>
       
 
       
@@ -455,6 +469,15 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
 
           </nav>
 
@@ -485,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件生命周期的特征"><span class="nav-number">2.</span> <span class="nav-text">组件生命周期的特征</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bean的种类"><span class="nav-number">2.1.</span> <span class="nav-text">bean的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新整理的生命周期"><span class="nav-number">2.2.</span> <span class="nav-text">重新整理的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的总结"><span class="nav-number">3.</span> <span class="nav-text">最后的总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件生命周期的特征"><span class="nav-number">2.</span> <span class="nav-text">组件生命周期的特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Bean的生命周期"><span class="nav-number">3.</span> <span class="nav-text">关于Bean的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bean的种类"><span class="nav-number">3.1.</span> <span class="nav-text">bean的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新整理的生命周期"><span class="nav-number">3.2.</span> <span class="nav-text">重新整理的生命周期</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后的总结"><span class="nav-number">4.</span> <span class="nav-text">最后的总结</span></a></li></ol></div>
             
 
           </div>
