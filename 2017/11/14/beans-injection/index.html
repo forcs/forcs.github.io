@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/38477205.jpg">
 <meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/22353287.jpg">
 <meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/54449598.jpg">
-<meta property="og:updated_time" content="2017-11-15T14:27:11.244Z">
+<meta property="og:updated_time" content="2017-11-15T15:12:32.838Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring Boot自动装配Bean的几种方式">
 <meta name="twitter:description" content="前言在我看来，以IoC见长的Spring，最强大的莫过于bean的装配机制，没有什么特别的需求，几乎不用关心Spring是如何装配bean的。正由于此，bean装配的流程也是Spring运行过程中最为神秘的一块，再加上Spring Boot又对Spring的自动化集成做了进一步的包装，使得bean的装配几乎是透明。本篇文章，就来探寻一下Spring Boot中自动装配bean的几种方式及其原理。">
@@ -372,7 +372,7 @@
 <ol>
 <li>通过<code>BeanMethod</code>获取<code>@Bean</code>注解实例，一遍获取注解中配置的参数。</li>
 <li>配置bean名称。</li>
-<li>实例化一个<code>BeanDefinition</code>，对于通过<code>@Bean</code>装配的bean组件，用到<code>ConfigurationClassBeanDefinition</code>。</li>
+<li>实例化一个<code>ConfigurationClassBeanDefinition</code>。</li>
 <li>配置bean组件的工厂和工厂方法。</li>
 <li>配置bean的<code>init-method</code>。</li>
 <li>配置bean的<code>destroy-method</code>。</li>
