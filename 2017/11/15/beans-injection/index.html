@@ -79,13 +79,21 @@
 
 
 
-<meta property="og:type" content="website">
+<meta name="description" content="title: ‘Spring Boot自动装配Bean的几种方式’date: 2017-11-14 21:33:41 Tags:spring boot, bean, DI前言在我看来，以IoC见长的Spring，最强大的莫过于bean的装配机制，没有什么特别的需求，几乎不用关心Spring是如何装配bean的。正由于此，bean装配的流程也是Spring运行过程中最为神秘的一块，再加上Sprin">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Forcs的记录">
-<meta property="og:url" content="http://zhangguoyu.org/index.html">
+<meta property="og:url" content="http://zhangguoyu.org/2017/11/15/beans-injection/index.html">
 <meta property="og:site_name" content="Forcs的记录">
+<meta property="og:description" content="title: ‘Spring Boot自动装配Bean的几种方式’date: 2017-11-14 21:33:41 Tags:spring boot, bean, DI前言在我看来，以IoC见长的Spring，最强大的莫过于bean的装配机制，没有什么特别的需求，几乎不用关心Spring是如何装配bean的。正由于此，bean装配的流程也是Spring运行过程中最为神秘的一块，再加上Sprin">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/38477205.jpg">
+<meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/22353287.jpg">
+<meta property="og:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/54449598.jpg">
+<meta property="og:updated_time" content="2017-11-15T13:46:45.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Forcs的记录">
+<meta name="twitter:description" content="title: ‘Spring Boot自动装配Bean的几种方式’date: 2017-11-14 21:33:41 Tags:spring boot, bean, DI前言在我看来，以IoC见长的Spring，最强大的莫过于bean的装配机制，没有什么特别的需求，几乎不用关心Spring是如何装配bean的。正由于此，bean装配的流程也是Spring运行过程中最为神秘的一块，再加上Sprin">
+<meta name="twitter:image" content="http://oz04bqks1.bkt.clouddn.com/17-11-15/38477205.jpg">
 
 
 
@@ -115,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://zhangguoyu.org/"/>
+  <link rel="canonical" href="http://zhangguoyu.org/2017/11/15/beans-injection/"/>
 
 
 
 
 
-  <title>Forcs的记录</title>
+  <title> | Forcs的记录</title>
   
 
 
@@ -140,8 +148,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,9 +221,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -246,9 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/15/beans-injection/" itemprop="url">未命名</a></h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -298,9 +303,7 @@
       
 
       
-        
-          
-            <hr>
+        <hr>
 <p>title: ‘Spring Boot自动装配Bean的几种方式’<br>date: 2017-11-14 21:33:41</p>
 <h2 id="Tags-spring-boot-bean-DI"><a href="#Tags-spring-boot-bean-DI" class="headerlink" title="Tags:spring boot, bean, DI"></a>Tags:spring boot, bean, DI</h2><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在我看来，以IoC见长的Spring，最强大的莫过于bean的装配机制，没有什么特别的需求，几乎不用关心Spring是如何装配bean的。正由于此，bean装配的流程也是Spring运行过程中最为神秘的一块，再加上Spring Boot又对Spring的自动化集成做了进一步的包装，使得bean的装配几乎是透明。本篇文章，就来探寻一下Spring Boot中自动装配bean的几种方式及其原理。</p>
 <h2 id="基于AutoConfigure的自动装配"><a href="#基于AutoConfigure的自动装配" class="headerlink" title="基于AutoConfigure的自动装配"></a>基于AutoConfigure的自动装配</h2><p>Spring Boot自动集成了自动化配置模块AutoConfigure。这个模块内置了很多Spring项目的常用配置项，进而简化Spring的工作，通过Java代码集成Spring也是Spring Boot项目主推的集成方法。</p>
@@ -509,8 +512,6 @@
 <p><code>XmlBeanDefinitionReader</code>和<code>PropertiesBeanDefinitionReader</code>都继承自<code>AbstarctBeanDefinitionReader</code>，是Spring中负责加载<code>BeanDefinition</code>的组件。处理这个两个reader外，还有一个reader，叫做<code>GroovyBeanDefinitionReader</code>，用于<code>groovy</code>环境下的<code>BeanDefinition</code>加载组件。</p>
 <p>通过对Spring Boot自动装配bean组件过程原理的分析，Spring自动化装配机制不再神秘。</p>
 
-          
-        
       
     </div>
     
@@ -527,188 +528,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangguoyu.org/2017/11/06/我所理解的Bean生命周期/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Forcs Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Forcs的记录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/11/06/我所理解的Bean生命周期/" itemprop="url">我所理解的Bean生命周期</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-06T23:16:12+08:00">
-                2017-11-06
-              </time>
+              <a href="/2017/11/06/我所理解的Bean生命周期/" rel="next" title="我所理解的Bean生命周期">
+                <i class="fa fa-chevron-left"></i> 我所理解的Bean生命周期
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果把Spring比作一个生命体，那么bean就是各个功能的器官，协同维持着生命体的运作。Spring本质就是一个bean工厂，负责生产和组装各种bean，利用IoC技术建立bean之间的依赖关系。bean可以视为Spring的一种组件单元，从创建到消亡的过程都委托给Spring负责管理，而这个从创建到消亡的过程，中间又细分了多个阶段，这些阶段，就是bean的<strong>生命周期</strong>。</p>
-<h2 id="组件生命周期的特征"><a href="#组件生命周期的特征" class="headerlink" title="组件生命周期的特征"></a>组件生命周期的特征</h2><p>从代码的角度描述，生命周期本质就是一个个钩子函数，或者说回调函数。从设计模式的角度看，有点观察者模式的意思，组件可以认为是被观察者，组件的容器就是观察者。</p>
-<p>根据之前Android和前端组件化的开发经验总结，我认为组件的生命周期因为具备如下特征：</p>
-<ul>
-<li>生命周期本质上是一个<strong>状态机</strong>，生命周期方法不应在它相应的阶段中被重复触发。</li>
-<li>生命周期的上下文对象<strong>this</strong>是组件自身。</li>
-<li>生命周期的各个阶段，除了运行阶段，其他的阶段应该是<strong>相互对应</strong>的，比如创建/销毁、激活/暂停等等。</li>
-</ul>
-<p>以Android的<code>Activity</code>为例，它的生命周期如下图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl7nbsod52j20e90ifmz4.jpg" alt=""></p>
-<p><code>onCreate()</code>对应着<code>onDestory()</code>，<code>onStart()</code>对应<code>onStop()</code>，<code>onResume()</code>对应<code>onPause()</code>等等。</p>
-<h2 id="关于Bean的生命周期"><a href="#关于Bean的生命周期" class="headerlink" title="关于Bean的生命周期"></a>关于Bean的生命周期</h2><p>关于Spring Bean的生命周期，网上的资料通常会提供下面这个流程图：</p>
-<p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl78mrngopj20ij0a6t9t.jpg" alt=""></p>
-<p>从这个流程图看到，Spring为Bean提供了非常细致的生命周期，光是ready之前，就有9个阶段。</p>
-<p>在我看来，这张图对于bean生命周期的描述是有些误导性的，为什么这么认为呢？结合前面描述的生命周期的特征第二条，生命周期各个阶段应该相互对应，但在上图展示的阶段中，只有四个阶段是满足这样的关系。</p>
-<p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl7mtvkedpj20en0403yq.jpg" alt=""></p>
-<p>如上图所示。其他阶段又应该如何理解？</p>
-<h2 id="Bean生命周期的分析"><a href="#Bean生命周期的分析" class="headerlink" title="Bean生命周期的分析"></a>Bean生命周期的分析</h2><p>接下来分析一下Bean的生命周期。</p>
-<h3 id="Bean的创建过程"><a href="#Bean的创建过程" class="headerlink" title="Bean的创建过程"></a>Bean的创建过程</h3><p>Spring把bean的生命周期划分的很细致，主要是集中在ready之前。构建的时候，Spring的BeanFactory把Bean的构建大致划分为四个阶段：</p>
-<p><img src="https://ws1.sinaimg.cn/large/64911e7dly1fl79vj0kkxj20mb02ajrj.jpg" alt=""></p>
-<p>先通过<code>BeanDefinition</code>调用工厂方法实例化bean对象，设置属性和依赖。接着是判断是否实现了一系列<code>Aware</code>接口，比如<code>BeanNameAware</code>、<code>BeanFactoryAware</code>、<code>ResourceLoaderAware</code>、<code>ApplicationContextAware</code>等等，然后调用这些<code>Aware</code>接口的set方法。再接着，交给容器的BeanPostProcessors处理，在BeanPostProcessors处理过程中，bean工厂会尝试调用组件自身的初始化方法，也就是<code>InitializingBean</code>的<code>afterPropertiesSet()</code>方法和<code>init-method</code>属性指定的方法，最终完成bean的构建。</p>
-<p>我并不认同将设置一系列Aware接口和BeanPostProcessors处理这两个阶段视为bean生命周期的阶段，原因是这两个阶段有违之前所述的生命周期的特征。</p>
-<p><code>Aware</code>接口本质上就是一个无副作用的setter，好比bean的属性。只不过在构建bean的时候，bean工厂会自动识别部分<code>Aware</code>接口，然后调用相应的setter。这些set方法都是<strong>无状态的</strong>，所以不能认为是生命周期的阶段。</p>
-<p>BeanPostProcessors本质上是<code>BeanPostProcesser</code>的实现，实现了<code>BeanPostProcessor</code>接口的<code>postProcessBeforeInitialization</code>和<code>postProcessAfterInitialization</code>两个方法。这两个方法都相同的接收两个参数，<code>bean</code>和<code>beanName</code>，并返回处理后的<code>bean</code>。那么问题来了，如果一个bean组件的类实现了<code>BeanPostProcessor</code>接口，是否可以像下面的代码这样，<code>BeanPostProcessor</code>接口的方法中处理bean自身呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanPostProcessorImpl</span> <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> </span>&#123;</div><div class="line">  	<span class="keyword">if</span> (bean == <span class="keyword">this</span>) &#123;</div><div class="line">    	<span class="comment">// do something...</span></div><div class="line">  	&#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>继续看下面的分析。</p>
-<h3 id="Bean的种类"><a href="#Bean的种类" class="headerlink" title="Bean的种类"></a>Bean的种类</h3><p>先说说bean的种类，Spring有几种bean？网上的资料大多数会提到下面两种：</p>
-<ul>
-<li><strong>普通的bean</strong> 就是大多数被<code>@Component</code>注解修身的模块bean，包括<code>@Configuration</code>、<code>@Controller</code>、<code>@Service</code>等。</li>
-<li><strong>工厂bean</strong> 这类bean充当着工厂模式中的工厂角色，提供生产bean的能力。</li>
-</ul>
-<p>但仅仅是这两种吗？如果是，那么对于上面的问题，答案应该是可以的。下面通过代码验证一下。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ImageManager</span> <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> Logger logger = Logger.getLogger(ImageManager.class.getName());</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ImageManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &gt; postProcessBeforeInitialization ImageManager"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> VideoManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &gt; postProcessBeforeInitialization VideoManager"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bean;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ImageManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &lt; postProcessAfterInitialization ImageManager"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> VideoManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &lt; postProcessAfterInitialization VideoManager"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bean;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ImageManager.java</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Service</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VideoManager</span> </span>&#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// VideoManager.java</span></div></pre></td></tr></table></figure>
-<p>定义两个service bean，顾名思义，一个用于管理图片，一个用于管理视频内容，这两个bean都没有具体实现什么功能接口，唯一的区别就是<code>ImageManager</code>实现的<code>BeanPostProcessor</code>接口，<code>VideoManager</code>啥都没有。在<code>ImageManager</code>的两个接口实现方法中，做了一个log打印，用于验证实现了<code>BeanPostProcessor</code>的bean是否能处理到自身实例，如果能，那么应该能看到两条关于<code>ImageManager</code>的log信息。试着运行一下。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">04</span>:<span class="number">54.497</span>  INFO <span class="number">16060</span> --- [  restartedMain] com.example.demo.ImageManager            : @@@ &gt; postProcessBeforeInitialization VideoManager</div><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">04</span>:<span class="number">54.498</span>  INFO <span class="number">16060</span> --- [  restartedMain] com.example.demo.ImageManager            : @@@ &lt; postProcessAfterInitialization VideoManager</div></pre></td></tr></table></figure>
-<p>在console中，只看到两条关于<code>VideoManager</code>的打印，并没有看到<code>ImageManager</code>的。所以，如果bean类实现了<code>BeanPostProcessor</code>的接口，这个bean就不能通过<code>BeanPostProcessor</code>的接口处理自身。</p>
-<p>那么能否在其他的<code>BeanPostProcessor</code>实现中处理呢？</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Component</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ManagerBeanPostProcessor</span> <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>&#123;</div><div class="line">    <span class="keyword">private</span> Logger logger = Logger.getLogger(ManagerBeanPostProcessor.class.getName());</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ImageManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &gt; postProcessBeforeInitialization ImageManager"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> VideoManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &gt; postProcessBeforeInitialization VideoManager"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bean;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">postProcessAfterInitialization</span><span class="params">(Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</div><div class="line">        <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ImageManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &lt; postProcessAfterInitialization ImageManager"</span>);</div><div class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (bean <span class="keyword">instanceof</span> VideoManager) &#123;</div><div class="line">            logger.info(<span class="string">"@@@ &lt; postProcessAfterInitialization VideoManager"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> bean;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//ManagerBeanPostProcessor.java</span></div></pre></td></tr></table></figure>
-<p>再定义一个与<code>VideoManager</code>和<code>ImageManager</code>无关的bean，实现<code>BeanPostProcessor</code>接口，打印日志。</p>
-<p>运行程序。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">28</span>:<span class="number">38.729</span>  INFO <span class="number">16103</span> --- [  restartedMain] com.example.demo.ImageManager            : @@@ &gt; postProcessBeforeInitialization VideoManager</div><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">28</span>:<span class="number">38.729</span>  INFO <span class="number">16103</span> --- [  restartedMain] c.example.demo.ManagerBeanPostProcessor  : @@@ &gt; postProcessBeforeInitialization VideoManager</div><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">28</span>:<span class="number">38.729</span>  INFO <span class="number">16103</span> --- [  restartedMain] com.example.demo.ImageManager            : @@@ &lt; postProcessAfterInitialization VideoManager</div><div class="line"><span class="number">2017</span>-<span class="number">11</span>-<span class="number">05</span> <span class="number">22</span>:<span class="number">28</span>:<span class="number">38.729</span>  INFO <span class="number">16103</span> --- [  restartedMain] c.example.demo.ManagerBeanPostProcessor  : @@@ &lt; postProcessAfterInitialization VideoManager</div></pre></td></tr></table></figure>
-<p>通过console的日志发现，依然没有关于<code>ImageManager</code>的打印。所以，通过上面的测试可以得出这么一个结论，如果一个bean类实现了<code>BeanPostProcessor</code>接口，这个bean就不再会处理其他实现了<code>BeanPostProcessor</code>接口的bean。换而言之，这类bean是有别于普通的bean的。所以，Spring的bean有几种？<strong>至少3种</strong>：</p>
-<ul>
-<li>普通的bean</li>
-<li>工厂bean</li>
-<li><strong>post-processor bean</strong></li>
-</ul>
-<p>实际上，在Spring中post-processor bean又分两种，一个种是实现<code>BeanPostProcessor</code>接口的，可以用于加工普通bean，另外一种是实现<code>BeanFactoryPostProcessor</code>接口的，用于加工bean factory，这两种bean，或许可以称为加工器bean，用于在bean的构建阶段，从横向切面对bean或者bean工厂进行加工。</p>
-<h3 id="重新整理的生命周期"><a href="#重新整理的生命周期" class="headerlink" title="重新整理的生命周期"></a>重新整理的生命周期</h3><p>通过上述的测试可以看出，在bean的构建过程中，BeanPostProcessors处理阶段的上下文（即<code>this</code>）并非组件本身，依据我理解的生命周期特征的第三点，这个阶段其实不能认为是bean生命周期的阶段。所以，关于bean的生命周期，我整理为如下流程：</p>
-<p><img src="http://oz04bqks1.bkt.clouddn.com/17-11-6/38868734.jpg" alt=""></p>
-<h2 id="最后的总结"><a href="#最后的总结" class="headerlink" title="最后的总结"></a>最后的总结</h2><p>如果按照生命周期的特征，真正可以作为bean生命周期的阶段，只有上图中的<strong>创建</strong>和<strong>销毁</strong>两个阶段，之前的通过<code>Aware</code>接口设置bean，以及通过<code>BeanPostProcessor</code>处理bean，只能认为是bean工厂对bean的加工阶段，与bean的生命周期并非太大联系。</p>
-<p>其实<code>Aware</code>接口不仅仅局限于生命周期中提到的三个Aware接口，还有<code>EnvironmentAware</code>，<code>ResourceLoaderAware</code>等。</p>
-<p>bean的种类还可以进一步细分：普通bean、工厂bean（BeanFactory）、加工bean（PostProcessor）。</p>
-<p>bean如果实现了<code>BeanPostProcessor</code>接口，那么并不能再<code>BeanPostProcessor</code>的实现方法中处理自身。</p>
-<p>本文对bean生命周期的分析，更多是自己的观点，并不否定网上对bean生命周期的描述和理解。我认为，bean在Spring中有着举足轻重的地位，对bean的理解深一点，对Spring就能理解深一点。</p>
-<p>以上。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -718,130 +559,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhangguoyu.org/2017/10/22/Hello-World-0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Forcs Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Forcs的记录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/22/Hello-World-0/" itemprop="url">Hello,World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-22T10:23:36+08:00">
-                2017-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBlog</span> </span>&#123;</div><div class="line">    </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        </div><div class="line">        System.out.println(<span class="string">"hello,world:)"</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -849,6 +571,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -869,8 +595,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -923,6 +658,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tags-spring-boot-bean-DI"><span class="nav-number">1.</span> <span class="nav-text">Tags:spring boot, bean, DI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于AutoConfigure的自动装配"><span class="nav-number">3.</span> <span class="nav-text">基于AutoConfigure的自动装配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自动扫描注入的原理分析"><span class="nav-number">3.0.1.</span> <span class="nav-text">自动扫描注入的原理分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Bean注解进行装配"><span class="nav-number">4.</span> <span class="nav-text">基于@Bean注解进行装配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#装配过程分析"><span class="nav-number">4.0.1.</span> <span class="nav-text">装配过程分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于XML进行装配"><span class="nav-number">5.</span> <span class="nav-text">基于XML进行装配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#装配的原理分析"><span class="nav-number">5.0.1.</span> <span class="nav-text">装配的原理分析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于Properties进行装配"><span class="nav-number">6.</span> <span class="nav-text">基于Properties进行装配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1056,6 +807,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
