@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/12/23/development-experience-that-encapsulated-axios/" itemprop="url">development-experience-that-encapsulated-axios</a></h1>
+                <a class="post-title-link" href="/2017/12/23/development-experience-that-encapsulated-axios/" itemprop="url">记一次对Axios进行封装的经历</a></h1>
         
 
         <div class="post-meta">
@@ -301,7 +301,7 @@
         
           
             <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前端开发中，如果页面需要与后台接口交互，并且无刷新页面，那么需要借助一下Ajax的http库来完成与后台数据接口的对接工作。在<code>jQuery</code>很盛行的时候，我们会使用<code>$.ajax()</code>，现在，可选择的就更多，例如：<a href="http://visionmedia.github.io/superagent/" target="_blank" rel="noopener"><code>SuperAgent</code></a>、<a href="https://github.com/axios/axios" target="_blank" rel="noopener"><code>Axios</code></a>、<a href="https://github.github.io/fetch/" target="_blank" rel="noopener"><code>Fetch</code></a>…等等。有了这些http库，我们不在需要关注太多与ajax底层相关的细节的问题。很多时候和场景下，只需要关注如何构建一个request以及如何处理一个response即可，但即便这些http库已经在一定程度上简化了我们的开发工作，我们仍然需要针对项目的实际需要，团队内部技术规范对这些http库进行封装，进而优化我们的开发效率。</p>
-<p>本文将结合我们团队使用的一个http库<code>Axios</code>和我们团队开发工程的一些场景，分享我们队对前端http库进行封装的经历。</p>
+<p>本文将结合我们团队使用的一个http库<code>Axios</code>和我们团队开发工程的一些场景，分享我们前端团队对http库进行封装的经历。</p>
 <h2 id="对http库进行基本的封装"><a href="#对http库进行基本的封装" class="headerlink" title="对http库进行基本的封装"></a>对http库进行基本的封装</h2><h4 id="服务端URL接口的定义"><a href="#服务端URL接口的定义" class="headerlink" title="服务端URL接口的定义"></a>服务端URL接口的定义</h4><p>以用户管理模块为例。对于用户管理模块，服务端通常会定义如下接口：</p>
 <ul>
 <li><code>GET /users?page=0&amp;size=20</code> - 获取用户信息的分页列表</li>
